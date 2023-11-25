@@ -69,3 +69,7 @@ Esto insertará datos de `scriptmongo.json` en la base de datos.
 ## Licencia
 
 Este proyecto está bajo la Licencia ISC.
+
+## Requisitos del Sistema
+
+- Node.js v18

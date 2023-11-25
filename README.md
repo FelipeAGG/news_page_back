@@ -1,2 +1,4 @@
+nvm 18
+node loadData.js //carga datos base para las noticias
 npm i
-npm index.js
+node index.js

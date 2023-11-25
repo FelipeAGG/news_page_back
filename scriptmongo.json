@@ -1,0 +1,66 @@
+[{
+    "id": 1,
+    "title": "title 1",
+    "text": "text 1",
+    "type": "article",
+    "author": "name 1",
+    "img": "",
+    "date": {
+      "$date": "2023-11-24T00:00:00.000Z"
+    }
+  },
+  {
+    "id": 2,
+    "title": "title 2",
+    "text": "text 2",
+    "type": "news",
+    "author": "name 2",
+    "img": "",
+    "date": {
+      "$date": "2023-11-24T01:00:00.000Z"
+    }
+  },
+  {
+    "id": 3,
+    "title": "title 3",
+    "text": "text 3",
+    "type": "article",
+    "author": "name 3",
+    "img": "",
+    "date": {
+      "$date": "2023-11-24T01:00:00.000Z"
+    }
+  },
+  {
+    "id": 4,
+    "title": "title 4",
+    "text": "text 4",
+    "type": "news",
+    "author": "name 4",
+    "img": "",
+    "date": {
+      "$date": "2023-11-24T01:00:00.000Z"
+    }
+  },
+  {
+    "id": 5,
+    "title": "title 5",
+    "text": "text 5",
+    "type": "article",
+    "author": "name 5",
+    "img": "",
+    "date": {
+      "$date": "2023-11-24T01:00:00.000Z"
+    }
+  },
+  {
+    "id": 6,
+    "title": "title 6",
+    "text": "text 6",
+    "type": "news",
+    "author": "name 6",
+    "img": "",
+    "date": {
+      "$date": "2023-11-24T01:00:00.000Z"
+    }
+  }]

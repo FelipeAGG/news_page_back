@@ -2,7 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = 3000;
+const port = 4000;
+
+const cors = require('cors');
+
+app.use(cors()); // Permitir todas las solicitudes durante el desarrollo
 
 // Conexión a MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/local');
@@ -26,11 +30,8 @@ const NewsList = mongoose.model('news_notes', newsSchema);
 
 app.get('/news', async (req, res) => {
   try {
-    const news = await NewsList.find({}, function(err, notas) {
-      if (err) throw err;
-      console.log(notas);
-    });
-    
+    const news = await NewsList.find({});
+    console.log(news);
     res.json(news);
   } catch (error) {
     res.status(500).json({ mensaje: error.message });

@@ -30,13 +30,30 @@ const NewsList = mongoose.model('news_notes', newsSchema);
 
 app.get('/news', async (req, res) => {
   try {
-    const news = await NewsList.find({});
-    console.log(news);
+    let query = {};
+
+    // Filtrar por autor si se llega
+    if (req.query.author) {
+      query['data.author'] = req.query.author;
+    }
+
+    // Filtrar por tipo si se llega
+    if (req.query.type) {
+      query['data.type'] = req.query.type;
+    }
+
+    // Ordenar por fecha descendente si llega el parámetro
+    const sortBy = req.query.sortBy || 'date';
+    const sortOrder = req.query.sortOrder === 'asc' ? 1 : -1;
+
+    const news = await NewsList.find(query).sort({ [sortBy]: sortOrder });
     res.json(news);
   } catch (error) {
     res.status(500).json({ mensaje: error.message });
   }
 });
+
+
 
 // Iniciar el servidor
 app.listen(port, () => {

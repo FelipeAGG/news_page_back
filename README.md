@@ -47,7 +47,7 @@ Asegúrate de tener MongoDB instalado localmente y ejecutándose en `mongodb://1
 1. Inicia el servidor:
 
    ```bash
-   npm start
+   node index.js
    ```
 
 2. Accede a la API de noticias en [http://localhost:4000/news](http://localhost:4000/news).

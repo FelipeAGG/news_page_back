@@ -1,59 +1,24 @@
+// index.js
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 
 const app = express();
 const port = 4000;
 
-const cors = require('cors');
-
-app.use(cors()); // Permitir todas las solicitudes durante el desarrollo
+app.use(cors());
 
 // Conexión a MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/local');
 
-// Definir esquemas y modelos de MongoDB aquí
-const newsSchema = new mongoose.Schema({
-  id: Number,
-  data: {
-    title: String,
-    text: String,
-    type: String,
-    author: String,
-    date: {
-      type: Date,
-      default: Date.now, 
-    },
-  }
-});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-const NewsList = mongoose.model('news_notes', newsSchema);
-
-app.get('/news', async (req, res) => {
-  try {
-    let query = {};
-
-    // Filtrar por autor si se llega
-    if (req.query.author) {
-      query['data.author'] = req.query.author;
-    }
-
-    // Filtrar por tipo si se llega
-    if (req.query.type) {
-      query['data.type'] = req.query.type;
-    }
-
-    // Ordenar por fecha descendente si llega el parámetro
-    const sortBy = req.query.sortBy || 'date';
-    const sortOrder = req.query.sortOrder === 'asc' ? 1 : -1;
-
-    const news = await NewsList.find(query).sort({ [sortBy]: sortOrder });
-    res.json(news);
-  } catch (error) {
-    res.status(500).json({ mensaje: error.message });
-  }
-});
-
-
+// Importar y utilizar las rutas
+const newsRoutes = require('./routes/newsRoutes');
+app.use('/news', newsRoutes);
 
 // Iniciar el servidor
 app.listen(port, () => {

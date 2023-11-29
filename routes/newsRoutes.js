@@ -39,12 +39,11 @@ const NewsList = require('../models/article');
  *           application/json:
  *             example:
  *               - id: 1
- *                 data:
- *                   title: "News Title"
- *                   text: "News content..."
- *                   type: "Breaking"
- *                   author: "John Doe"
- *                   date: "2023-11-25T12:00:00Z"
+*                - title: "News Title"
+*                - text: "News content..."
+*                - type: "Breaking"
+*                - author: "John Doe"
+*                - date: "2023-11-25T12:00:00Z"
  *       500:
  *         description: Internal server error
  */
@@ -54,12 +53,12 @@ router.get('/', async (req, res) => {
 
     // Filtrar por autor si se llega
     if (req.query.author) {
-      query['data.author'] = req.query.author;
+      query['author'] = req.query.author;
     }
 
     // Filtrar por tipo si se llega
     if (req.query.type) {
-      query['data.type'] = req.query.type;
+      query['type'] = req.query.type;
     }
 
     // Ordenar por fecha descendente si llega el parámetro
